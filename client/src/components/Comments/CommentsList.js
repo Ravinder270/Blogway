@@ -21,6 +21,7 @@ export default function CommentsList({ comments }) {
           ) : (
             comments?.map(comment => (
               <>
+              {/*key and user profile photo */}
                 <li key={comment?._id} className="py-4  w-full">
                   <div className="flex space-x-3">
                     <img
