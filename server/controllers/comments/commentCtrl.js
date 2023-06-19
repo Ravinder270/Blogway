@@ -3,7 +3,7 @@ const Comment = require("../../model/comment/Comment");
 const validateMongodbId = require("../../utils/validateMongodbID");
 
 //-------------------------------------------------------------
-//Create
+//Create comments 
 //-------------------------------------------------------------
 const createCommentCtrl = expressAsyncHandler(async (req, res) => {
   //1.Get the user
@@ -37,7 +37,7 @@ const fetchAllCommentsCtrl = expressAsyncHandler(async (req, res) => {
 });
 
 //------------------------------
-//commet details
+//comment details
 //------------------------------
 const fetchCommentCtrl = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -51,7 +51,7 @@ const fetchCommentCtrl = expressAsyncHandler(async (req, res) => {
 });
 
 //------------------------------
-//Update
+//Update comment details
 //------------------------------
 
 const updateCommentCtrl = expressAsyncHandler(async (req, res) => {
@@ -77,7 +77,7 @@ const updateCommentCtrl = expressAsyncHandler(async (req, res) => {
 });
 
 //------------------------------
-//delete
+//delete comment details
 //------------------------------
 
 const deleteCommentCtrl = expressAsyncHandler(async (req, res) => {
