@@ -15,6 +15,22 @@ const formSchema = Yup.object({
   image: Yup.string().required("Image is required"),
 });
 
+
+//css for dropzone
+const Container = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+border-color:'red'
+  transition: border 0.24s ease-in-out;
+`;
 export default function CreatePost() {
   const dispatch = useDispatch();
 
