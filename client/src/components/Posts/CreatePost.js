@@ -31,6 +31,7 @@ const Container = styled.div`
 border-color:'red'
   transition: border 0.24s ease-in-out;
 `;
+
 export default function CreatePost() {
   const dispatch = useDispatch();
 
