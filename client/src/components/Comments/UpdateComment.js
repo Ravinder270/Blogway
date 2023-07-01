@@ -9,40 +9,6 @@ import {
 } from "../../redux/slices/comments/commentSlices";
 
 //Form schema
-const formSchema = Yup.object({
-  description: Yup.string().required("Description is required"),
-});
-
-const UpdateComment = ({
-  computedMatch: {
-    params: { id },
-  },
-}) => {
-  //dispatch
-  const dispatch = useDispatch();
-  //fetch comment
-  useEffect(() => {
-    dispatch(fetchCommentAction(id));
-  }, [dispatch, id]);
-  //select comment from store
-  const comment = useSelector(state => state?.comment);
-  const { commentDetails, isUpdate } = comment;
-
-  const formik = useFormik({
-    enableReinitialize: true,
-    initialValues: {
-      description: commentDetails?.description,
-    },
-    onSubmit: values => {
-      const data = {
-        id,
-        description: values?.description,
-      };
-      //dispatch action
-      dispatch(updateCommentAction(data));
-    },
-    validationSchema: formSchema,
-  });
 
   //redirect
   if (isUpdate) return <Navigate to={`/posts`} />;
