@@ -10,6 +10,42 @@ import {
   deleteCategoriesAction,
 } from "../../redux/slices/category/categorySlice";
 
+//Form schema
+const formSchema = Yup.object({
+  title: Yup.string().required("Title is required"),
+});
+
+const UpdateCategory = ({
+  computedMatch: {
+    params: { id },
+  },
+}) => {
+  const dispatch = useDispatch();
+  //fetch single category
+  useEffect(() => {
+    dispatch(fetchCategoryAction(id));
+  }, []);
+
+  //get data from store
+  const state = useSelector(state => state?.category);
+
+  const { loading, appErr, serverErr, category, isEdited, isDeleted } = state;
+
+  //formik
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      title: category?.title,
+    },
+    onSubmit: values => {
+      //build up the date for update
+
+      //dispath the action
+      dispatch(updateCategoriesAction({ title: values.title, id }));
+    },
+    validationSchema: formSchema,
+  });
+
   //redirect
   if (isEdited || isDeleted) return <Navigate to="/category-list" />;
   return (
