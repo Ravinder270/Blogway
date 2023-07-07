@@ -252,57 +252,7 @@ export const fetchUsersAction = createAsyncThunk(
   }
 );
 
-//Block User
-export const blockUserAction = createAsyncThunk(
-  "user/block",
-  async (id, { rejectWithValue, getState, dispatch }) => {
-    //get user token
-    const user = getState()?.users;
-    const { userAuth } = user;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userAuth?.token}`,
-      },
-    };
-    try {
-      const { data } = await axios.put(
-        `${baseUrl}/api/users/block-user/${id}`,
-        {},
-        config
-      );
-      return data;
-    } catch (error) {
-      if (!error?.response) throw error;
-      return rejectWithValue(error?.response?.data);
-    }
-  }
-);
 
-//unBlock User
-export const unBlockUserAction = createAsyncThunk(
-  "user/unblock",
-  async (id, { rejectWithValue, getState, dispatch }) => {
-    //get user token
-    const user = getState()?.users;
-    const { userAuth } = user;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userAuth?.token}`,
-      },
-    };
-    try {
-      const { data } = await axios.put(
-        `${baseUrl}/api/users/unblock-user/${id}`,
-        {},
-        config
-      );
-      return data;
-    } catch (error) {
-      if (!error?.response) throw error;
-      return rejectWithValue(error?.response?.data);
-    }
-  }
-);
 //Logout action
 export const logoutAction = createAsyncThunk(
   "/user/logout",
