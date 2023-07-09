@@ -35,6 +35,37 @@ export const accVerificationSendTokenAction = createAsyncThunk(
   }
 );
 
+//Verify Account
+export const verifyAccountAction = createAsyncThunk(
+  "account/verify",
+  async (token, { rejectWithValue, getState, dispatch }) => {
+    //get user token
+    const user = getState()?.users;
+    const { userAuth } = user;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    //http call
+    try {
+      const { data } = await axios.put(
+        `${baseUrl}/api/users/verify-account`,
+        { token },
+        config
+      );
+      //dispatch
+      dispatch(resetAcc());
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 //slices
 
 const accountVericationSlices = createSlice({
