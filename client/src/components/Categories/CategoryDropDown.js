@@ -49,10 +49,7 @@ const CategoryDropDown = props => {
           value={props?.value?.label}
         />
       )}
-      {/* Display */}
-      {props?.error && (
-        <div style={{ color: "red", marginTop: ".5rem" }}>{props?.error}</div>
-      )}
+     
     </div>
   );
 };
