@@ -16,15 +16,7 @@ const AddComment = ({ postId }) => {
   const comment = useSelector(state => state?.comment);
   const { loading, appErr, serverErr } = comment;
 
-  const formik = useFormik({
-    initialValues: {
-      description: "",
-    },
-    onSubmit: values => {
-      const data = {
-        postId,
-        description: values?.description,
-      };
+  
       //dispatch action
       dispatch(createCommentAction(data));
     },
