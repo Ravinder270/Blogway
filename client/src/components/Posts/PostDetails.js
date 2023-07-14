@@ -29,7 +29,12 @@ const PostDetails = ({
     dispatch(fetchPostDetailsAction(id));
   }, [id, dispatch, commentCreated, commentDeleted]);
 
-  
+  //Get login user
+  const user = useSelector(state => state.users);
+  const { userAuth } = user;
+
+  const isCreatedBy = postDetails?.user?._id === userAuth?._id;
+  console.log(isCreatedBy);
   //redirect
   if (isDeleted) return <Navigate to="/posts" />;
   return (
