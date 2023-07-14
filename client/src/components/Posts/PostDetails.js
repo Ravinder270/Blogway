@@ -11,56 +11,6 @@ import LoadingComponent from "../../utils/LoadingComponent";
 import AddComment from "../Comments/AddComment";
 import CommentsList from "../Comments/CommentsList";
 
-const PostDetails = ({
-  match: {
-    params: { id },
-  },
-}) => {
-  const dispatch = useDispatch();
-
-  //select post details from store
-  const post = useSelector(state => state?.post);
-  const { postDetails, loading, appErr, serverErr, isDeleted } = post;
-
-  //comment
-  const comment = useSelector(state => state.comment);
-  const { commentCreated, commentDeleted } = comment;
-  useEffect(() => {
-    dispatch(fetchPostDetailsAction(id));
-  }, [id, dispatch, commentCreated, commentDeleted]);
-
-  //Get login user
-  const user = useSelector(state => state.users);
-  const { userAuth } = user;
-
-  const isCreatedBy = postDetails?.user?._id === userAuth?._id;
-  console.log(isCreatedBy);
-  //redirect
-  if (isDeleted) return <Navigate to="/posts" />;
-  return (
-    <>
-      {loading ? (
-        <div className="h-screen">
-          <LoadingComponent />
-        </div>
-      ) : appErr || serverErr ? (
-        <h1 className="h-screen text-red-400 text-xl">
-          {serverErr} {appErr}
-        </h1>
-      ) : (
-        <section className="py-20 2xl:py-40 bg-gray-800 overflow-hidden">
-          <div className="container px-4 mx-auto">
-            {/* Post Image */}
-            <img
-              className="mb-24 w-full h-96 object-cover"
-              src={postDetails?.image}
-              alt=""
-            />
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="mt-7 mb-14 text-6xl 2xl:text-7xl text-white font-bold font-heading">
-                {postDetails?.title}
-              </h2>
-
               {/* User */}
               <div className="inline-flex pt-14 mb-14 items-center border-t border-gray-500">
                 <img
