@@ -49,38 +49,6 @@ const ResetPasswordForm = () => {
           ) : null}
         </div>
 
-        {/* Sucess msg */}
-        <div className="text-green-700 text-center">
-          {passwordToken && (
-            <h3>
-              Email is successfully sent to your email. Verify it within 10
-              minutes.
-            </h3>
-          )}
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={formik.handleSubmit}>
-          <input type="hidden" name="remember" defaultValue="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Enter Your Email Address
-              </label>
-              <input
-                type="email"
-                autoComplete="email"
-                value={formik.values.email}
-                onChange={formik.handleChange("email")}
-                onBlur={formik.handleBlur("email")}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-              {/* Err msg */}
-              <div className="text-red-400 mb-2">
-                {formik.touched.email && formik.errors.email}
-              </div>
-            </div>
-          </div>
-
           <div className="flex items-center justify-between">
             <div className="text-sm">
               <Link
