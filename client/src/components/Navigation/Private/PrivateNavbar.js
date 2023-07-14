@@ -12,23 +12,6 @@ import { PlusIcon, LogoutIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../../../redux/slices/users/usersSlices";
 
-const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Create", href: "/create-post", current: false },
-  { name: "Posts", href: "/posts", current: false },
-  { name: "Profile", href: "/users", current: false },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-const PrivateNavbar = ({ isLogin }) => {
-  const userNavigation = [
-    { name: "Your Profile", href: `/profile/${isLogin?._id}` },
-    { name: "Change your password", href: "/update-password" },
-  ];
-
   //logout
   const dispatch = useDispatch();
   return (
