@@ -10,6 +10,26 @@ const formSchema = Yup.object({
   subject: Yup.string().required("Subject is required"),
   message: Yup.string().required("Message is required"),
 });
+const SendEmail = ({ location: { state } }) => {
+  console.log(state);
+  //dispath
+  const dispatch = useDispatch();
+  //formik
+  const formik = useFormik({
+    initialValues: {
+      recipientEmail: state?.email,
+      subject: "",
+      message: "",
+    },
+    onSubmit: values => {
+      //dispath the action
+      dispatch(sendMailAction(values));
+    },
+    validationSchema: formSchema,
+  });
+  //select data from store
+  const sendMail = useSelector(state => state?.sendMail);
+  const { mailSent, loading, appErr, serverErr, isMailSent } = sendMail;
 
   //redirect
   if (isMailSent) return <Navigate to={`/profile/${state?.id}`} />;
